@@ -198,3 +198,4 @@ console.log('********************');
 for (const shape of shapes) {
     console.log(shape.area(), shape.perimeter())
 }
+console.log('****************************')
