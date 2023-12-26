@@ -16,7 +16,7 @@ class NoteBook {
         this._todos = JSON.parse(localStorage.getItem(this.name)) || []
     }
 
-    private _setTodoToFormLS():void{
+    private _setTodoToLS():void{
         localStorage.setItem(this.name, JSON.stringify(this._todos));
         this._initTodos()
     }
@@ -30,6 +30,7 @@ class NoteBook {
         this._getTodosFromLS();
         const todosDiv = document.querySelector('#todos') as HTMLElement;
         todosDiv.innerHTML = '';
+        let i: number;
         this._todos.forEach(todo=>{
             const todoDiv = document.createElement('div');
             todoDiv.innerText = `${todo.id}) ${todo.title}`;
@@ -37,11 +38,17 @@ class NoteBook {
             butDel.innerText = 'Delete';
             butDel.addEventListener('click', function (): void {
                 todosDiv.removeChild(todoDiv);
+
+
+
             })
             todoDiv.append(butDel);
-            todosDiv.append(todoDiv);
+            todosDiv.append(todoDiv)
         })
+
     }
+
+
 
 
 
@@ -52,7 +59,7 @@ class NoteBook {
             const input = e.target['title'] as HTMLInputElement;
             const  id: number = this._todos.slice(-1)[0]?.id + 1 || 1;
             this._todos.push({id, title: input.value});
-            this._setTodoToFormLS();
+            this._setTodoToLS();
             form.reset()
         }
     }
