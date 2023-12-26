@@ -26,7 +26,6 @@ class NoteBook {
         this._initForm()
     }
 
-
     private _initTodos(): void {
         this._getTodosFromLS();
         const todosDiv = document.querySelector('#todos') as HTMLElement;
@@ -35,12 +34,12 @@ class NoteBook {
             const todoDiv = document.createElement('div');
             todoDiv.innerText = `${todo.id}) ${todo.title}`;
             const butDel = document.createElement('button');
-            butDel.innerText = 'Del';
-            butDel.onclick = function ():void{
+            butDel.innerText = 'Delete';
+            butDel.addEventListener('click', function (): void {
                 todosDiv.removeChild(todoDiv);
-            }
+            })
             todoDiv.append(butDel);
-            todosDiv.append(todoDiv)
+            todosDiv.append(todoDiv);
         })
     }
 
@@ -57,9 +56,6 @@ class NoteBook {
             form.reset()
         }
     }
-
-
-
 }
 
 
