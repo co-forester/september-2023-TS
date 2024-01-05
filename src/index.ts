@@ -1,3 +1,5 @@
+console.log(document.forms);
+
 interface ITodo {
     id: number;
     title: string
@@ -16,7 +18,7 @@ class NoteBook {
         this._todos = JSON.parse(localStorage.getItem(this.name)) || []
     }
 
-    private _setTodoToLS():void{
+    private _setTodoToFormLS():void{
         localStorage.setItem(this.name, JSON.stringify(this._todos));
         this._initTodos()
     }
@@ -30,36 +32,55 @@ class NoteBook {
         this._getTodosFromLS();
         const todosDiv = document.querySelector('#todos') as HTMLElement;
         todosDiv.innerHTML = '';
-        let i: number;
-        this._todos.forEach(todo=>{
+        // this._todos.forEach(todo=>{
+        for (let i = 0; i < this._todos.length; i++) {
+            // let todo = this._todos[i];
             const todoDiv = document.createElement('div');
-            todoDiv.innerText = `${todo.id}) ${todo.title}`;
+            todoDiv.innerText = `${this._todos[i].id}) ${this._todos[i].title}`;
+            // let formEach = document.createElement('form');
             const butDel = document.createElement('button');
-            butDel.innerText = 'Delete';
-            butDel.addEventListener('click', function (): void {
-                todosDiv.removeChild(todoDiv);
-
-
-
+            butDel.classList.add('del');
+            butDel.innerText = 'Delete!';
+            let todo =this._todos[i];
+            // formEach.append(butDel);
+            todoDiv.appendChild(butDel)
+            butDel.addEventListener('click', ()=>{
+                console.log('!!!!!');
+               // todoDiv.style.display='none';
+               //  butDel.style.display='none';
+                // delete this._todos[i].id;
+                // delete this._todos[i].title;
+                // delete this._todos[i];
+                
+                console.log(this._todos);
+                localStorage.setItem(this.name, JSON.stringify(this._todos));
+                this._initTodos();
             })
+            todosDiv.append(todoDiv);
             todoDiv.append(butDel);
-            todosDiv.append(todoDiv)
-        })
+        }
+
 
     }
+    // function deleted(id){
+    //
+    //     })
+    // }
+    // private _deleteTodo():void {
 
-
-
-
+    //     this._getTodosFromLS()
+    //     let butFormEach = document.forms[0].button;
+    //     console.log('!!!!!!!!')
+    // }
 
     private _initForm(): void{
-        const form = document.forms['form'] as HTMLFormElement;
+        const form = document.forms[0] as HTMLFormElement;
         form.onsubmit = (e):void =>{
             e.preventDefault();
             const input = e.target['title'] as HTMLInputElement;
             const  id: number = this._todos.slice(-1)[0]?.id + 1 || 1;
             this._todos.push({id, title: input.value});
-            this._setTodoToLS();
+            this._setTodoToFormLS();
             form.reset()
         }
     }
@@ -67,3 +88,4 @@ class NoteBook {
 
 
 new NoteBook( 'fds');
+
