@@ -83,6 +83,11 @@ CarRender.run()
 // carService.getAll().then(value => console.log(value));
 // carService.deleteById(9974);
 // carService.deleteById(9975);
+// carService.deleteById(9975);
+// carService.deleteById(10040);
+// carService.deleteById(10041);
+// carService.deleteById(10042;
+// carService.deleteById(9975);
 // carService.deleteById(9976);
 // carService.deleteById(9979);
 // carService.create({brand: 'bubba', price: 450000, year: 2004}).then(value => console.log(value));
